@@ -25,15 +25,22 @@ response = requests.request("GET", full_url, headers=headers, data=payload)
 
 player_data = response.json()
 
-for legend in player_data["data"]:
-	try:
-		print(legend["metadata"]["name"] + " Kills: " + str(int(legend["stats"]["kills"]["value"])))
-	except KeyError: 
-		print(legend["metadata"]["name"] + " Kills: -")
+API_legend_name = []
 
-# for legend in legend_names:
-# 	print(legend)
+for name in player_data["data"]:
+	name = name["metadata"]["name"]
+	API_legend_name.append(name)
 
-# for items in stats["data"]["items"][0]["matches"]:
-# 	print(items["metadata"]["character"]["displayValue"])
-# 	print(items["metadata"]["character"]["displayValue"])
+print(legend_names)
+print(API_legend_name)
+
+for legend in legend_names:
+	for APIlegend in API_legend_name:
+		if legend == APIlegend:
+			for legend_stats in player_data["data"]:
+				try:
+					print(legend + " Kills: " + str(int(legend_stats["stats"]["kills"]["value"])))
+				except KeyError: 
+					print(legend + " Kills: -")
+		else:
+			print(legend)
