@@ -13,7 +13,7 @@ full_url = url + player_name + "/segments" + "/" + segment_type
 
 payload = {}
 
-headers = {'TRN-Api-Key': '92143f6a-2a2a-4164-9597-8a253dabb5c1'}
+headers = {'TRN-Api-Key': ''}
 
 response = requests.request("GET", full_url, headers=headers, data=payload)
 
