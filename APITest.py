@@ -25,9 +25,9 @@ player_data = response.json()
 for name in player_data["data"]:
 
 	try:
-		print(name["metadata"]["name"]), print("Kills: " + str(int(name["stats"]["kills"]["value"])))
+		print(name["metadata"]["name"] + " Kills: " + str(int(name["stats"]["kills"]["value"])))
 	except KeyError: 
-		print("No data")
+		""
 
 # for items in stats["data"]["items"][0]["matches"]:
 # 	print(items["metadata"]["character"]["displayValue"])
