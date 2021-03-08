@@ -34,13 +34,18 @@ for name in player_data["data"]:
 print(legend_names)
 print(API_legend_name)
 
+def list_contains(List1, List2):
+    check = False
+    for x in List1: 
+        for y in List2: 
+            if x == y: 
+                check = True
+                return check
+    return check
+
+print(list_contains(legend_names,API_legend_name))
+
 for legend in legend_names:
-	for APIlegend in API_legend_name:
-		if legend == APIlegend:
-			for legend_stats in player_data["data"]:
-				try:
-					print(legend + " Kills: " + str(int(legend_stats["stats"]["kills"]["value"])))
-				except KeyError: 
-					print(legend + " Kills: -")
-		else:
-			print(legend)
+	if list_contains(legend_names,API_legend_name) == True:
+		print(legend)
+#str(int(legend_stats["stats"]["kills"]["value"]))
