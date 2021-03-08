@@ -1,7 +1,7 @@
 import requests
 import json
 
-APIKey_file = open("ApexAPI.txt", "rt")
+APIKey_file = open("C:/Users/jakeg/Documents/Apex.txt", "rt")
 APIKey = APIKey_file.read()
 
 url = 'https://public-api.tracker.gg/v2/apex/standard/profile/origin/'
