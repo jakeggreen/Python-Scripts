@@ -2,16 +2,16 @@ import requests
 import json
 
 class Legend:
-	def __init__(self, name, kills, percentile):
+	def __init__(self, name, kills):
+		# self.player = player
 		self.name = name
 		self.kills = kills
-		self.percentile = percentile
+	# def getPlayer(self):
+	# 	return self.player
 	def getKills(self):
 		return self.kills
 	def getName(self):
 		return self.name
-	# def getPercentile(self):
-	# 	return self.percentile
 
 def getLegendKills(legend):
 	return legend.getKills()
@@ -25,11 +25,9 @@ all_legend_names = ["Bloodhound", "Gibraltar", "Lifeline", "Pathfinder", "Wraith
 
 url = 'https://public-api.tracker.gg/v2/apex/standard/profile/origin/'
 
-player_name = 'MajorQuazar'
+player_names =  {'MajorQuazar','Sushi','GrumpyEconomist'}
 
 segment_type = 'legend'
-
-full_url = url + player_name + "/segments" + "/" + segment_type
 
 payload = {}
 
@@ -39,30 +37,34 @@ legend_data = list();
 
 #end setup
 
+#HTTP request to tracker.gg api looping through available players
+for player in player_names:
+	full_url = url + player + "/segments" + "/" + segment_type
+	response = requests.request("GET", full_url, headers=headers, data=payload)
+	player_data = response.json()
+	#process reponse data
+	for legend in all_legend_names:
+		#set default kills to 0
+		kills = 0;
+		#check to see if player data is available
+		try:
+			for item in player_data["data"]:
+				#if legend name matches a player data legend name then try to get kill data
+				if item.get("metadata").get("name") == legend:
+					#if kill data is available then set value of kills
+					if item.get("stats") and item.get("stats").get("kills") and item.get("stats").get("kills").get("value"):
+						kills = int(item["stats"]["kills"]["value"])
+		except KeyError:
+			pass
+		#initialise Legend object for each legend using player name, legend name and kills as parameters.
+		legend_data.append(Legend(legend, kills));
 
-#HTTP request to tracker.gg api
-response = requests.request("GET", full_url, headers=headers, data=payload)
-player_data = response.json()
-#process reponse data
-for legend in all_legend_names:
-	#set default kills to 0
-	kills = 0;
-	percentile = 0
-	for item in player_data["data"]:
-		#if legend name matches a player data legend name then try to get kill data
-		if item.get("metadata").get("name") == legend:
-			#if kill data is available then set value of kills
-			if item.get("stats") and item.get("stats").get("kills") and item.get("stats").get("kills").get("value"):
-				kills = int(item["stats"]["kills"]["value"])
-				# percentile = int(item["stats"]["kills"]["percentile"])
-	#initialise Legend object for each legend using name and kills as parameters.
-	legend_data.append(Legend(legend, kills, percentile))
-	pass
-
-#sort based by kill count (descending)
-legend_data.sort(key= getLegendKills, reverse = True)
-#print name with formatting
-print("-----\r" + player_name + "\r-----")
-#print all legend data
-for legend in legend_data:
-	print(str(legend.getKills()) + " kills with " + legend.getName())
+	#sort based by kill count (descending)
+	legend_data.sort(key= getLegendKills, reverse = True)
+	#print name with formatting
+	print("-----\r" + player + "\r-----")
+	#print all legend data
+	for legend in legend_data:
+		print(str(legend.getKills()) + " kills with " + legend.getName())
+	#clear the list to start loop again - this can be done better but it's midnight and i'm pooped	
+	legend_data = list()
