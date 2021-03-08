@@ -10,8 +10,8 @@ class Legend:
 		return self.kills
 	def getName(self):
 		return self.name
-	def getPercentile(self):
-		return self.percentile
+	# def getPercentile(self):
+	# 	return self.percentile
 
 def getLegendKills(legend):
 	return legend.getKills()
@@ -54,7 +54,7 @@ for legend in all_legend_names:
 			#if kill data is available then set value of kills
 			if item.get("stats") and item.get("stats").get("kills") and item.get("stats").get("kills").get("value"):
 				kills = int(item["stats"]["kills"]["value"])
-				percentile = int(item["stats"]["kills"]["percentile"])
+				# percentile = int(item["stats"]["kills"]["percentile"])
 	#initialise Legend object for each legend using name and kills as parameters.
 	legend_data.append(Legend(legend, kills, percentile))
 	pass
