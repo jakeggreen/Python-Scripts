@@ -27,7 +27,7 @@ for name in player_data["data"]:
 	try:
 		print(name["metadata"]["name"] + " Kills: " + str(int(name["stats"]["kills"]["value"])))
 	except KeyError: 
-		""
+		print(name["metadata"]["name"] + " Kills: -")
 
 # for items in stats["data"]["items"][0]["matches"]:
 # 	print(items["metadata"]["character"]["displayValue"])
