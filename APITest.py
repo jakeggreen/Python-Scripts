@@ -1,6 +1,9 @@
 import requests
 import json
 
+APIKey_file = open("ApexAPI.txt", "rt")
+APIKey = APIKey_file.read()
+
 url = 'https://public-api.tracker.gg/v2/apex/standard/profile/origin/'
 
 player_name = 'majorquazar'
@@ -13,7 +16,7 @@ full_url = url + player_name + "/segments" + "/" + segment_type
 
 payload = {}
 
-headers = {'TRN-Api-Key': '92143f6a-2a2a-4164-9597-8a253dabb5c1'}
+headers = {'TRN-Api-Key': APIKey}
 
 response = requests.request("GET", full_url, headers=headers, data=payload)
 
