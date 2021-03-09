@@ -2,12 +2,12 @@ import requests
 import json
 
 class Legend:
-	def __init__(self, name, kills):
-		# self.player = player
+	def __init__(self, player, name, kills):
+		self.player = player
 		self.name = name
 		self.kills = kills
-	# def getPlayer(self):
-	# 	return self.player
+	def getPlayer(self):
+		return self.player
 	def getKills(self):
 		return self.kills
 	def getName(self):
@@ -15,6 +15,7 @@ class Legend:
 
 def getLegendKills(legend):
 	return legend.getKills()
+
 
 #setup
 APIKey_file = open("Apex.txt", "rt")
@@ -57,7 +58,8 @@ for player in player_names:
 		except KeyError:
 			pass
 		#initialise Legend object for each legend using player name, legend name and kills as parameters.
-		legend_data.append(Legend(legend, kills));
+		legend_data.append(Legend(player, legend, kills));
+
 
 	#sort based by kill count (descending)
 	legend_data.sort(key= getLegendKills, reverse = True)
