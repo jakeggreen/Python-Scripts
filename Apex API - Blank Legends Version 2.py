@@ -16,17 +16,21 @@ class Legend:
 def getLegendKills(legend):
 	return legend.getKills()
 
-
 #setup
+
+#pull in API key from text file
 APIKey_file = open("Apex.txt", "rt")
 APIKey = APIKey_file.read()
+
+#get list of player names from separate text file
+player_name_file = open("Players.txt", "rt")
+players = player_name_file.read()
+player_names = players.split("\n")
 
 all_legend_names = ["Bloodhound", "Gibraltar", "Lifeline", "Pathfinder", "Wraith", "Bangalore", "Caustic", "Mirage", 
 "Octane", "Wattson", "Crypto", "Revenant", "Loba", "Rampart", "Horizon", "Fuse"]
 
 url = 'https://public-api.tracker.gg/v2/apex/standard/profile/origin/'
-
-player_names =  {'MajorQuazar','Sushi','GrumpyEconomist'}
 
 segment_type = 'legend'
 
