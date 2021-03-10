@@ -51,6 +51,7 @@ for player in player_names:
 	for legend in all_legend_names:
 		#set default kills to 0
 		kills = 0;
+		player = player;
 		#check to see if player data is available
 		try:
 			for item in player_data["data"]:
@@ -64,7 +65,6 @@ for player in player_names:
 		#initialise Legend object for each legend using player name, legend name and kills as parameters.
 		legend_data.append(Legend(player, legend, kills));
 
-
 	#sort based by kill count (descending)
 	legend_data.sort(key= getLegendKills, reverse = True)
 	#print name with formatting
@@ -73,4 +73,4 @@ for player in player_names:
 	for legend in legend_data:
 		print(str(legend.getKills()) + " kills with " + legend.getName())
 	#clear the list to start loop again - this can be done better but it's midnight and i'm pooped	
-	legend_data = list()
+	# legend_data.clear()
