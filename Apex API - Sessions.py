@@ -60,12 +60,11 @@ try:
 				legend = matches["metadata"]["character"]["displayValue"]
 				rankscore = matches["stats"]["rankScore"]["value"]
 				session_data.append(Match(player, startdate, enddate, legend, rankscore));
-				print(player, startdate, enddate, legend, rankscore)
+				# print(Match(player, startdate, enddate, legend, rankscore))
 except KeyError:
 	pass
 			
-# for player in legend_data:
-# 	legend_data.sort(key= getLegendKills, reverse = True)
-# 	print("-----\r" + Legend.getPlayer(player) + "\r-----")
-# 	print(str(Legend.getKills(player)) + " kills with " + Legend.getName(player))
-# print(rank)
+for player in session_data:
+	# print("-----\r" + Match.getPlayer(player) + "\r-----")
+	print(Match.getPlayer(player) + " Started: " + str(Match.getStart(player)) + ", Ended: " 
+	+ str(Match.getEnd(player)) + ", Played With: " + str(Match.getLegend(player)) + ", Rank: " + str(Match.getRank(player)))
