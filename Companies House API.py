@@ -23,7 +23,6 @@ APIKey = APIKey_file.read()
 CompanyNumber_file = open('Company Numbers.txt', 'rt')
 company_file = CompanyNumber_file.read()
 company_number = company_file.split('\n')
-# company_number = '13014185'
 
 url = 'https://api.company-information.service.gov.uk/company/' 
 
