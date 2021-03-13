@@ -24,7 +24,6 @@ companies_house_data = list();
 #end setup
 
 for company in company_number:
-	# parameters = {'register_view': 'true', 'register_type': 'directors'}
 	full_url = url + company + '/officers'
 	response = requests.request('GET', full_url, headers=headers, data=payload)
 	company_officers = response.json()
