@@ -73,4 +73,4 @@ for player in player_names:
 	for legend in legend_data:
 		print(str(legend.getKills()) + " kills with " + legend.getName())
 	#clear the list to start loop again - this can be done better but it's midnight and i'm pooped	
-	# legend_data.clear()
+	legend_data.clear()
