@@ -56,3 +56,9 @@ for company in company_number:
 
 for company in company_list:
 	print(Company.getOfficer(company) + ', ' + Company.getCompany(company))
+
+# companies_house_data = company_list
+
+# df = pd.DataFrame(companies_house_data, columns = ['Company'])
+
+# print(df)
