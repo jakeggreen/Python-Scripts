@@ -63,7 +63,6 @@ for player in player_names:
 				rankscore = matches['stats']['rankScore']['value']
 				session_data.append(Match(player, startdate, enddate, legend, rankscore));
 
-
 for match in session_data:
 	# print('-----\r' + Match.getPlayer(match) + '\r-----')
 	print(Match.getPlayer(match) + ' - Start: ' + str(Match.getStart(match)) + ', End: ' 
